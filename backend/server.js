@@ -10,31 +10,27 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
 
-// Ruta principal para verificar que el servidor funciona
+// 🆕 Servir el frontend desde /public
+app.use(express.static(path.join(__dirname, "public")));
+
+// Ruta principal para mostrar el frontend
 app.get("/", (req, res) => {
-    res.send("🚀 API de Scraping en funcionamiento. Usa /api/libros o /api/noticias.");
+    res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
-// Ruta para obtener los libros
+// Rutas de API
 app.get("/api/libros", (req, res) => {
     const filePath = path.join(__dirname, "libros_populares.json");
-
     fs.readFile(filePath, "utf8", (err, data) => {
-        if (err) {
-            return res.status(500).json({ error: "Error al leer el archivo JSON" });
-        }
+        if (err) return res.status(500).json({ error: "Error al leer el archivo JSON" });
         res.json(JSON.parse(data));
     });
 });
 
-// Ruta para obtener noticias
 app.get("/api/noticias", (req, res) => {
     const filePath = path.join(__dirname, "noticias.json");
-
     fs.readFile(filePath, "utf8", (err, data) => {
-        if (err) {
-            return res.status(500).json({ error: "Error al leer el archivo de noticias" });
-        }
+        if (err) return res.status(500).json({ error: "Error al leer el archivo de noticias" });
         res.json(JSON.parse(data));
     });
 });
