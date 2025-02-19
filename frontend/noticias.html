@@ -13,7 +13,7 @@
     <script>
         async function cargarNoticias() {
             try {
-                const response = await fetch("http://localhost:3000/api/noticias");
+                const response = await fetch("https://scraping-om28.onrender.com/api/noticias");
                 const noticias = await response.json();
 
                 const container = document.getElementById("noticias-container");

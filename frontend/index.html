@@ -27,7 +27,7 @@
     <script>
         async function cargarLibros() {
             try {
-                const response = await fetch("http://localhost:3000/api/libros");
+                const response = await fetch("https://scraping-om28.onrender.com/api/libros");
                 const libros = await response.json();
 
                 window.librosData = libros; // Guardamos los datos en una variable global
