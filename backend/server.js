@@ -4,11 +4,16 @@ const fs = require("fs");
 const path = require("path");
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 // Middleware
 app.use(cors());
 app.use(express.json());
+
+// Ruta principal para verificar que el servidor funciona
+app.get("/", (req, res) => {
+    res.send("🚀 API de Scraping en funcionamiento. Usa /api/libros o /api/noticias.");
+});
 
 // Ruta para obtener los libros
 app.get("/api/libros", (req, res) => {
@@ -22,7 +27,7 @@ app.get("/api/libros", (req, res) => {
     });
 });
 
-// Nueva ruta para obtener noticias
+// Ruta para obtener noticias
 app.get("/api/noticias", (req, res) => {
     const filePath = path.join(__dirname, "noticias.json");
 
