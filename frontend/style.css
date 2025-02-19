@@ -1,0 +1,133 @@
+/* Estilos generales */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Título principal */
+h1 {
+    color: #343a40;
+}
+
+/* Barra de búsqueda */
+input {
+    width: 60%;
+    padding: 10px;
+    margin: 20px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* Contenedor de libros */
+#libros-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+/* Tarjeta de cada libro */
+.libro {
+    background-color: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out;
+}
+
+.libro:hover {
+    transform: scale(1.05);
+}
+
+/* Estilos del título */
+.libro h2 {
+    font-size: 18px;
+    color: #444;
+    margin-bottom: 5px;
+}
+
+/* Estilos de la información */
+.libro p {
+    font-size: 14px;
+    color: #666;
+    margin: 5px 0;
+}
+
+/* Botón de ver libro */
+.libro a {
+    display: inline-block;
+    margin-top: 10px;
+    text-decoration: none;
+    color: white;
+    background-color: #007bff;
+    padding: 8px 12px;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.libro a:hover {
+    background-color: #0056b3;
+}
+/* Estilos para las noticias */
+.noticia {
+    background-color: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 15px;
+}
+
+.noticia h2 {
+    font-size: 18px;
+    color: #444;
+}
+
+.noticia a {
+    display: inline-block;
+    margin-top: 10px;
+    text-decoration: none;
+    color: white;
+    background-color: #007bff;
+    padding: 8px 12px;
+    border-radius: 5px;
+}
+
+.noticia a:hover {
+    background-color: #0056b3;
+}
+h2 {
+    color: #333;
+    margin-top: 20px;
+}
+
+#map {
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+/* Contenedor de botones */
+.botones-navegacion {
+    margin: 20px 0;
+}
+
+/* Botón de navegación */
+.boton {
+    display: inline-block;
+    background-color: #007bff;
+    color: white;
+    padding: 10px 15px;
+    margin: 5px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+.boton:hover {
+    background-color: #0056b3;
+}

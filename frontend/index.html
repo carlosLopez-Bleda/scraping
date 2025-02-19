@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Libros Populares</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>📚 Libros Populares de Gutenberg</h1>
+
+    <!-- Botones de navegación -->
+    <div class="botones-navegacion">
+        <a href="noticias.html" class="boton">📰 Ver Noticias</a>
+        <a href="#ubicacion" class="boton">📍 Ver Ubicación</a>
+    </div>
+    
+    <input type="text" id="busqueda" placeholder="🔎 Buscar por título o autor..." onkeyup="filtrarLibros()">
+    
+    <div id="libros-container"></div>
+    <h2 id="ubicacion">📍 Nuestra Ubicación</h2>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3101.0717676429636!2d-1.8582616999999997!3d38.9908584!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd665fc6e365b52f%3A0x9d7080fa6b098c49!2sPopular%20Libros!5e0!3m2!1ses!2ses!4v1739983089963!5m2!1ses!2ses" 
+    width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+    
+    </iframe>
+    
+    <script>
+        async function cargarLibros() {
+            try {
+                const response = await fetch("http://localhost:3000/api/libros");
+                const libros = await response.json();
+
+                window.librosData = libros; // Guardamos los datos en una variable global
+                mostrarLibros(libros);
+            } catch (error) {
+                console.error("Error al cargar los libros:", error);
+            }
+        }
+
+        function mostrarLibros(libros) {
+            const container = document.getElementById("libros-container");
+            container.innerHTML = libros.map(libro => `
+                <div class="libro">
+                    <h2>${libro.titulo}</h2>
+                    <p><strong>Autor:</strong> ${libro.autor}</p>
+                    <p><strong>Descargas:</strong> ${libro.idioma}</p>
+                    <a href="${libro.enlace}" target="_blank">📖 Ver Libro</a>
+                </div>
+            `).join("");
+        }
+
+        function filtrarLibros() {
+            const textoBusqueda = document.getElementById("busqueda").value.toLowerCase();
+            const librosFiltrados = window.librosData.filter(libro =>
+                libro.titulo.toLowerCase().includes(textoBusqueda) ||
+                libro.autor.toLowerCase().includes(textoBusqueda)
+            );
+            mostrarLibros(librosFiltrados);
+        }
+
+        cargarLibros();
+    </script>
+</body>
+</html>

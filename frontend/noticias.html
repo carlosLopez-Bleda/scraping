@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Noticias Literarias</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>📰 Noticias Literarias</h1>
+    <div id="noticias-container"></div>
+
+    <script>
+        async function cargarNoticias() {
+            try {
+                const response = await fetch("http://localhost:3000/api/noticias");
+                const noticias = await response.json();
+
+                const container = document.getElementById("noticias-container");
+                container.innerHTML = noticias.map(noticia => `
+                    <div class="noticia">
+                        <h2>${noticia.titulo}</h2>
+                        <p><strong>Fuente:</strong> ${noticia.fuente}</p>
+                        <a href="${noticia.link}" target="_blank">🔗 Leer más</a>
+                    </div>
+                `).join("");
+            } catch (error) {
+                console.error("Error al cargar las noticias:", error);
+            }
+        }
+
+        cargarNoticias();
+    </script>
+</body>
+</html>
